@@ -1,0 +1,208 @@
+
+
+* {
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+  }
+
+body {
+
+font-family: Arial, sans-serif;
+color: #333333;
+background-color: #eef2f5;
+
+background-image: url("background.jpg");
+background-repeat: no-repeat;
+background-position: center;
+background-size: 500px 500px;
+background-attachment: fixed;
+
+
+}
+
+.page-header {
+padding: 35px 20px;
+text-align: center;
+color: white;
+background-color: #1f2937;
+}
+
+.page-header h1 {
+margin: 0 0 8px;
+font-size: 36px;
+}
+
+.page-header p {
+margin: 0;
+font-size: 16px;
+}
+
+
+
+.container {
+width: 90%;
+max-width: 1000px;
+margin: 35px auto;
+}
+
+
+.card {
+background-color: white;
+margin-bottom: 25px;
+padding: 25px;
+border-radius: 8px;
+
+border: 1px solid #d1d5db;
+
+box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+
+}
+
+.card h2 {
+margin-top: 0;
+color: #1f2937;
+}
+
+
+.background-example {
+min-height: 220px;
+padding: 35px;
+color: white;
+text-align: center;
+background-color: #2563eb;
+background-image: url("background.jpg");
+background-repeat: no-repeat;
+background-size: 250px 150px;
+background-position: center;
+background-attachment: fixed;
+border-radius: 8px;
+
+
+}
+
+.border-example {
+padding: 25px;
+border-top: 5px solid #2563eb;
+border-right: 5px dashed #dc2626;
+border-bottom: 5px dotted #16a34a;
+border-left: 6px double #9333ea;
+background-color: #f8fafc;
+
+}
+
+.size-container {
+width: 100%;
+height: 400px;
+padding: 20px;
+background-color: #f1f5f9;
+}
+
+.pixel-box {
+width: 300px;
+height: 150px;
+padding: 20px;
+margin-bottom: 20px;
+background-color: #dbeafe;
+border: 2px solid #2563eb;
+}
+
+.percentage-box {
+width: 80%;
+height: 80%;
+padding: 20px;
+background-color: #dcfce7;
+border: 2px solid #16a34a;
+}
+
+
+.font-one {
+font-family: Georgia, serif;
+font-size: 22px;
+color: #2563eb;
+}
+
+.font-two {
+font-family: "Trebuchet MS", sans-serif;
+font-size: 18px;
+font-style: italic;
+color: #9333ea;
+}
+
+.font-three {
+font-family: Arial, sans-serif;
+font-size: 20px;
+font-weight: bold;
+color: #dc2626;
+}
+
+.font-four {
+font-family: "Courier New", monospace;
+font-size: 18px;
+color: #16a34a;
+text-align: center;
+}
+
+
+.text-alignment {
+margin-top: 25px;
+padding: 15px;
+border: 1px solid #d1d5db;
+}
+
+.align-left {
+text-align: left;
+}
+
+.align-center {
+text-align: center;
+}
+
+.align-right {
+text-align: right;
+}
+
+.summary li {
+margin-bottom: 8px;
+}
+
+
+footer {
+padding: 20px;
+text-align: center;
+color: white;
+background-color: #1f2937;
+}
+
+
+@media (max-width: 600px) {
+
+
+.page-header h1 {
+    font-size: 28px;
+}
+
+.container {
+    width: 94%;
+}
+
+.card {
+    padding: 20px;
+}
+
+.pixel-box {
+    width: 100%;
+}
+
+.size-container {
+    height: auto;
+}
+
+.percentage-box {
+    width: 100%;
+    height: 150px;
+}
+
+
+}

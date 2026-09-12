@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AngularJS Basics</title>
+
+<!-- AngularJS Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<!-- External JavaScript file -->
+<script src="app.js"></script>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        color: #333;
+    }
+
+    header {
+        padding: 35px 20px;
+        text-align: center;
+        background-color: #1f2937;
+        color: white;
+    }
+
+    header h1 {
+        margin: 0 0 8px;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 30px auto;
+    }
+
+    .card {
+        background-color: white;
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h2 {
+        margin-top: 0;
+        color: #1f2937;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        max-width: 450px;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #bbb;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .color-box {
+        width: 100%;
+        max-width: 450px;
+        padding: 20px;
+        margin-top: 15px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+
+    .result {
+        margin-top: 15px;
+        padding: 15px;
+        background-color: #eff6ff;
+        border-left: 4px solid #2563eb;
+    }
+
+    .student {
+        padding: 12px;
+        margin: 8px 0;
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 5px;
+    }
+
+    button {
+        padding: 10px 18px;
+        border: none;
+        border-radius: 5px;
+        background-color: #2563eb;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #1d4ed8;
+    }
+
+    footer {
+        padding: 20px;
+        text-align: center;
+        background-color: #1f2937;
+        color: white;
+    }
+</style>
+```
+
+</head>
+
+<body ng-app="basicApp">
+
+```
+<header>
+    <h1>AngularJS Basics</h1>
+    <p>Expressions, Modules, Directives, Controllers and Scope</p>
+</header>
+
+<main class="container">
+
+    <!-- =========================================
+         1. EXPRESSIONS AND COLOR TEXTBOX
+         ========================================= -->
+
+    <section class="card" ng-controller="MainController">
+
+        <h2>1. AngularJS Expressions</h2>
+
+        <p>
+            Addition using AngularJS expression:
+            <strong>{{ 10 + 20 }}</strong>
+        </p>
+
+        <p>
+            Multiplication:
+            <strong>{{ 5 * 6 }}</strong>
+        </p>
+
+        <p>
+            Welcome message:
+            <strong>{{ firstName + " " + lastName }}</strong>
+        </p>
+
+        <hr>
+
+        <h3>Change Text Box Background</h3>
+
+        <p>
+            Enter a color value such as
+            <strong>lightblue</strong>,
+            <strong>yellow</strong> or
+            <strong>pink</strong>.
+        </p>
+
+        <input
+            type="text"
+            ng-model="color"
+            placeholder="Enter a color"
+            ng-style="{ 'background-color': color }"
+        >
+
+        <div
+            class="color-box"
+            ng-style="{ 'background-color': color }"
+        >
+            Current color: {{ color || "No color entered" }}
+        </div>
+
+    </section>
+
+
+    <section class="card" ng-controller="MainController">
+
+        <h2>2. Module, Directive and Controller</h2>
+
+        <p>
+            The application module, controller and custom directive
+            are defined in the external <strong>app.js</strong> file.
+        </p>
+
+        <hello-message></hello-message>
+
+    </section>
+
+    <section
+        class="card"
+        ng-controller="StudentController"
+        ng-init="course = 'AngularJS Basics'"
+    >
+
+        <h2>3. Data Binding and AngularJS Directives</h2>
+
+        <p>
+            Course name:
+            <strong>{{ course }}</strong>
+        </p>
+
+        <label for="studentName">Enter your name:</label>
+
+        <input
+            id="studentName"
+            type="text"
+            ng-model="studentName"
+            placeholder="Enter your name"
+        >
+
+        <div class="result">
+            Hello, <strong>{{ studentName || "Student" }}</strong>!
+        </div>
+
+        <h3>Student List</h3>
+
+        <div
+            class="student"
+            ng-repeat="student in students"
+        >
+            <strong>{{ student.name }}</strong>
+            - {{ student.course }}
+        </div>
+
+        <h3>Content using ng-include</h3>
+
+        <div ng-include="'message.html'"></div>
+
+    </section>
+
+    <section
+        class="card"
+        ng-controller="ScopeController"
+    >
+
+        <h2>4. $scope and $rootScope</h2>
+
+        <p>
+            Controller scope message:
+            <strong>{{ localMessage }}</strong>
+        </p>
+
+        <p>
+            Root scope message:
+            <strong>{{ rootMessage }}</strong>
+        </p>
+
+        <p>
+            Application name from $rootScope:
+            <strong>{{ appName }}</strong>
+        </p>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 AngularJS Basics</p>
+</footer>
+
+
+</body>
+
+</html>

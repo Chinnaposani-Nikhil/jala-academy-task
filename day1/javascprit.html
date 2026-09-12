@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // This is a single-line comment
+/*
+   This is a multi-line comment.
+   It can span across multiple lines.
+*/
+
+console.log("Hello, World!");
+    </script>
+
+      <h2>Fruit Names</h2>
+
+    <p id="fruits">Apple, Banana, Mango, Orange, Grapes</p>
+
+    <button onclick="sortFruits()">Sort Descending</button>
+
+    <script>
+        // Create an array of fruits
+        let fruits = ["Apple", "Banana", "Mango", "Orange", "Grapes"];
+
+        function sortFruits() {
+            // Sort fruits in descending order
+            fruits.sort().reverse();
+
+            // Display the sorted array
+            document.getElementById("fruits").innerHTML = fruits.join(", ");
+        }
+    </script>
+
+   <!-- for lopp -->
+     <script>
+
+
+for(let i=1;i<=5;i++)
+    {
+        console.log("hi");
+        console.log("\n");
+    }
+let str="" 
+for(let j=1;j<=5;j++)
+    {
+        str=str+"nikhil";
+        str=str+"\n";      
+}
+console.log(str);
+
+let n=1
+let str1=""
+while(n<=5)
+    {
+        str1=str1+"hi while";
+        str1=str1+"\n";
+        
+        n++;
+       
+}
+console.log(str1);
+
+let m=1
+do{
+    console.log(" hi do while");
+    m++;
+    
+}
+while(m<=5)
+     </script>
+   
+ <!-- if loop -->
+   <script>
+
+     let a=10,b=20;
+if(a<b){
+    console.log("hi 1");
+    
+}
+if(a>b){
+    console.log("bye");
+    
+}
+else{
+    console.log("hi");
+    
+}
+if(5>2){
+   if(5<3){
+    console.log("nested if");
+    
+}
+else{
+    console.log(" bye nested if");
+    
+}   
+}
+else{
+    console.log("if hi");
+    
+}
+if(5<1){
+    console.log("hi 1 if");
+    
+}
+else if(5<2){
+    console.log("hi 2 if");
+    
+}
+else if(5<6){
+    console.log("hi 3 if");
+    
+}
+else{
+    console.log("no ");
+    
+}
+for( let i=1; i<=5;i++){
+    if(i==3){
+        // console.log(i);
+        
+    }
+    console.log(i);
+    
+}
+for( let i=1; i<=5;i++){
+    if(i==3){
+        // console.log(i);
+        break;
+    }
+    console.log(i);
+    
+}
+for( let i=1; i<=5;i++){
+    if(i==3){
+        // console.log(i);
+        continue;
+        
+    }
+    console.log(i);
+    
+}
+   </script>
+  <h2>Person Details</h2>
+
+    <p id="result"></p>
+
+    <script>
+        // Create a person object
+        let person = {
+            firstname: "Nikhil",
+            lastname: "Chinnaposani"
+        };
+
+        // 1st way: Dot notation
+        let firstName = person.firstname;
+        let lastName = person.lastname;
+
+        // 2nd way: Bracket notation
+        let firstName2 = person["firstname"];
+        let lastName2 = person["lastname"];
+
+        // Display the properties
+        document.getElementById("result").innerHTML =
+            "Using Dot Notation: " + firstName + " " + lastName + "<br>" +
+            "Using Bracket Notation: " + firstName2 + " " + lastName2;
+    </script>
+     
+<h2>JavaScript Variable Hoisting</h2>
+
+    <script>
+
+        // var example
+        console.log(z);
+
+        var z = 10;
+
+        console.log(z);
+
+
+        // let example
+        console.log(y);
+
+        let y = 20;
+
+        console.log(y);
+
+
+        // const example
+        console.log(s);
+
+        const s = 30;
+
+        console.log(s);
+
+    </script>
+     
+     <script>
+        // Without strict mode
+         t = 10;
+        console.log(t);
+
+     </script>
+    <script>
+         "use strict";
+
+        u = 10;
+       console.log(u);
+    </script>
+</body>
+</html>
