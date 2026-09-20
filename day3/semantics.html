@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>HTML5 Semantic Elements</title>
+
+
+<style>
+
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        color: #333;
+        line-height: 1.6;
+    }
+
+
+    header {
+        background-color: #1f2937;
+        color: white;
+        padding: 35px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        margin: 0 0 8px;
+    }
+
+    header p {
+        margin: 0;
+        color: #d1d5db;
+    }
+
+
+    nav {
+        background-color: white;
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    nav a {
+        margin: 0 12px;
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        color: #1d4ed8;
+        text-decoration: underline;
+    }
+
+
+    main {
+        width: 90%;
+        max-width: 1100px;
+        margin: 30px auto;
+    }
+
+
+    .content-section {
+        background-color: white;
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    }
+
+    .content-section h2 {
+        margin-top: 0;
+        color: #1f2937;
+    }
+
+
+    .non-semantic-container {
+        padding: 20px;
+        background-color: #f8fafc;
+        border: 1px solid #cbd5e1;
+    }
+
+    .div-box {
+        padding: 20px;
+        margin-bottom: 15px;
+        background-color: #dbeafe;
+        border: 1px solid #2563eb;
+    }
+
+    .span-highlight {
+        padding: 3px 6px;
+        background-color: #fef3c7;
+        color: #92400e;
+        font-weight: bold;
+    }
+
+
+    form {
+        max-width: 600px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: bold;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #bbb;
+        border-radius: 5px;
+        font-family: inherit;
+        font-size: 15px;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #2563eb;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #1d4ed8;
+    }
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th {
+        background-color: #1f2937;
+        color: white;
+    }
+
+    tbody tr:hover {
+        background-color: #eff6ff;
+    }
+
+
+
+    .article-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 25px;
+    }
+
+    article {
+        padding: 20px;
+        background-color: #f8fafc;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+    }
+
+    article h2 {
+        margin-top: 0;
+    }
+
+    aside {
+        padding: 20px;
+        background-color: #eff6ff;
+        border-left: 4px solid #2563eb;
+        border-radius: 6px;
+    }
+
+    figure {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    figure img {
+        width: 100%;
+        max-width: 600px;
+        border-radius: 8px;
+    }
+
+    figcaption {
+        margin-top: 8px;
+        color: #6b7280;
+        font-style: italic;
+    }
+
+
+    hgroup {
+        margin-bottom: 20px;
+    }
+
+    hgroup h2 {
+        margin-bottom: 5px;
+    }
+
+    hgroup p {
+        margin-top: 0;
+        color: #6b7280;
+    }
+
+
+
+    mark {
+        padding: 2px 5px;
+        background-color: #fef08a;
+    }
+
+    time {
+        color: #2563eb;
+        font-weight: bold;
+    }
+
+
+
+    footer {
+        padding: 25px;
+        text-align: center;
+        background-color: #1f2937;
+        color: white;
+    }
+
+    footer p {
+        margin: 5px 0;
+    }
+
+
+    @media (max-width: 700px) {
+
+        main {
+            width: 94%;
+        }
+
+        .article-layout {
+            grid-template-columns: 1fr;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 5px 8px;
+        }
+
+        .content-section {
+            padding: 20px;
+        }
+
+        table {
+            font-size: 14px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body id="top">
+
+
+<header>
+
+    <hgroup>
+
+        <h1>HTML5 Semantic Elements</h1>
+
+        <p>
+            Understanding semantic and non-semantic HTML
+        </p>
+
+    </hgroup>
+
+</header>
+
+
+
+<nav>
+
+    <a href="#non-semantic">
+        Non-Semantic
+    </a>
+
+    <a href="#semantic">
+        Semantic Elements
+    </a>
+
+    <a href="#html5">
+        HTML5 Tags
+    </a>
+
+    <a href="#article">
+        Article
+    </a>
+
+</nav>
+
+
+
+<main>
+
+
+   
+    <section
+        class="content-section"
+        id="non-semantic"
+    >
+
+        <h2>1. Non-Semantic Elements</h2>
+
+        <p>
+            The two commonly used non-semantic elements are
+            <strong>&lt;div&gt;</strong> and
+            <strong>&lt;span&gt;</strong>.
+        </p>
+
+
+        <div class="non-semantic-container">
+
+            <div class="div-box">
+
+                <h3>Using div</h3>
+
+                <p>
+                    The div element is a generic block-level
+                    container. It does not describe the meaning
+                    of its content.
+                </p>
+
+            </div>
+
+
+            <p>
+
+                This paragraph contains a
+
+                <span class="span-highlight">
+                    span element
+                </span>
+
+                which is an inline container.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <section
+        class="content-section"
+        id="semantic"
+    >
+
+        <h2>2. Semantic Form Element</h2>
+
+        <p>
+            The form element represents a section containing
+            controls for submitting information.
+        </p>
+
+
+        <form>
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="course">
+                    Select Course
+                </label>
+
+                <select id="course" name="course">
+
+                    <option value="">
+                        Select a course
+                    </option>
+
+                    <option value="html">
+                        HTML
+                    </option>
+
+                    <option value="css">
+                        CSS
+                    </option>
+
+                    <option value="javascript">
+                        JavaScript
+                    </option>
+
+                    <option value="angular">
+                        AngularJS
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="message">
+                    Message
+                </label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Enter your message"
+                ></textarea>
+
+            </div>
+
+
+            <button type="submit">
+                Submit
+            </button>
+
+        </form>
+
+    </section>
+
+
+
+    <section class="content-section">
+
+        <h2>Semantic Table Element</h2>
+
+        <p>
+            The table element represents tabular data arranged
+            in rows and columns.
+        </p>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Technology</th>
+                    <th>Experience</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td>101</td>
+                    <td>Rahul</td>
+                    <td>HTML & CSS</td>
+                    <td>1 Year</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>102</td>
+                    <td>Priya</td>
+                    <td>JavaScript</td>
+                    <td>2 Years</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>103</td>
+                    <td>Arun</td>
+                    <td>AngularJS</td>
+                    <td>1.5 Years</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <section
+        class="content-section"
+        id="html5"
+    >
+
+        <h2>3. HTML5 Semantic Elements</h2>
+
+
+        <div class="article-layout">
+
+
+            <!-- ARTICLE -->
+
+            <article id="article">
+
+                <hgroup>
+
+                    <h2>Learning HTML5</h2>
+
+                    <p>
+                        Understanding semantic elements
+                    </p>
+
+                </hgroup>
+
+
+                <p>
+
+                    HTML5 introduced several semantic elements
+                    that make the structure of a webpage easier
+                    to understand.
+
+                </p>
+
+
+                <p>
+
+                    For example,
+
+                    <mark>
+                        semantic HTML
+                    </mark>
+
+                    provides meaningful information about
+                    different sections of a webpage.
+
+                </p>
+
+
+                <p>
+
+                    This article was published on
+
+                    <time datetime="2026-09-20">
+                        September 20, 2026
+                    </time>.
+
+                </p>
+
+
+                <!-- FIGURE -->
+
+                <figure>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80"
+                        alt="Laptop displaying programming code"
+                    >
+
+                    <figcaption>
+                        A developer working with HTML, CSS and JavaScript.
+                    </figcaption>
+
+                </figure>
+
+
+                <section>
+
+                    <h3>Why Semantic HTML?</h3>
+
+                    <p>
+
+                        Semantic elements improve the readability
+                        and structure of HTML documents. They can
+                        also help accessibility tools and search
+                        engines understand the content.
+
+                    </p>
+
+                </section>
+
+            </article>
+
+
+            <!-- ASIDE -->
+
+            <aside>
+
+                <h3>Related Information</h3>
+
+                <p>
+                    Semantic elements describe the purpose of
+                    their content.
+                </p>
+
+                <ul>
+
+                    <li>header</li>
+                    <li>nav</li>
+                    <li>article</li>
+                    <li>section</li>
+                    <li>aside</li>
+                    <li>footer</li>
+
+                </ul>
+
+            </aside>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         TAG EXPLANATION
+         ========================================= -->
+
+    <section class="content-section">
+
+        <h2>Semantic Tags Used in This Page</h2>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Tag</th>
+                    <th>Purpose</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+                    <td>&lt;article&gt;</td>
+                    <td>Independent, self-contained content.</td>
+                </tr>
+
+                <tr>
+                    <td>&lt;aside&gt;</td>
+                    <td>Related or secondary content.</td>
+                </tr>
+
+                <tr>
+                    <td>&lt;figcaption&gt;</td>
+                    <td>Caption for a figure.</td>
+                </tr>
+
+                <tr>
+                    <td>&lt;figure&gt;</td>
+                    <td>Self-contained media or content.</td>
+                </tr>
+
+                <tr>
+                    <td>&lt;footer&gt;</td>
+                    <td>Footer information for a page or section.</td>
+                </tr>
+
+                <tr>
+                    <td>&lt;header&gt;</td>
+                    <td>Introductory content or navigation area.</td>
+                </tr>
+
+                <tr>
+                    <td>&lt;hgroup&gt;</td>
+                    <td>Groups related heading content.</td>
+                </tr>
+
+                <tr>
+                    <td>&lt;mark&gt;</td>
+                    <td>Highlights relevant text.</td>
+                </tr>
+
+                <tr>
+                    <td>&lt;nav&gt;</td>
+                    <td>Contains navigation links.</td>
+                </tr>
+
+                <tr>
+                    <td>&lt;section&gt;</td>
+                    <td>Groups related content.</td>
+                </tr>
+
+                <tr>
+                    <td>&lt;time&gt;</td>
+                    <td>Represents a date or time.</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- =========================================
+         BACK TO TOP
+         ========================================= -->
+
+    <section class="content-section">
+
+        <p style="text-align: center;">
+
+            <a href="#top">
+                Back to Top
+            </a>
+
+        </p>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 HTML5 Semantic Elements
+    </p>
+
+    <p>
+        Built using semantic HTML5 elements.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en"
+      ng-app="jsonApp">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Day 3 - AngularJS JSON</title>
+
+
+    <!-- AngularJS 1.x -->
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js">
+    </script>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            color: #1f2937;
+        }
+
+
+        /* Header */
+
+        header {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+
+        /* Main */
+
+        main {
+            width: 92%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+
+        /* Sections */
+
+        .section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .section h2 {
+            margin-top: 0;
+            color: #1e3a8a;
+        }
+
+
+        /* Search */
+
+        .search-box {
+            width: 100%;
+            max-width: 350px;
+            padding: 11px;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+
+            margin-bottom: 20px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+
+        /* Table */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1e3a8a;
+            color: white;
+            cursor: pointer;
+        }
+
+        th:hover {
+            background-color: #2563eb;
+        }
+
+        tbody tr:hover {
+            background-color: #eff6ff;
+        }
+
+
+        /* Even and Odd rows */
+
+        .even-row {
+            background-color: #f8fafc;
+        }
+
+        .odd-row {
+            background-color: #ffffff;
+        }
+
+
+        /* Index */
+
+        .index-number {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+
+        /* Select */
+
+        select {
+            width: 100%;
+            max-width: 350px;
+            padding: 11px;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+
+            font-size: 15px;
+        }
+
+
+        /* Result */
+
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+
+            background-color: #eff6ff;
+            border-left: 4px solid #2563eb;
+
+            border-radius: 5px;
+        }
+
+
+        /* Code example */
+
+        pre {
+            background-color: #111827;
+            color: #e5e7eb;
+
+            padding: 18px;
+            border-radius: 8px;
+
+            overflow-x: auto;
+        }
+
+
+        /* Footer */
+
+        footer {
+            background-color: #111827;
+            color: white;
+
+            text-align: center;
+            padding: 20px;
+        }
+
+
+        /* Responsive */
+
+        @media (max-width: 700px) {
+
+            main {
+                width: 95%;
+            }
+
+            .section {
+                padding: 18px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body
+    ng-controller="StudentController"
+>
+
+
+    <!-- Header -->
+
+    <header>
+
+        <h1>AngularJS JSON</h1>
+
+        <p>
+            JSON Data, Filters, $index, $odd, $even and Select Options
+        </p>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =========================================
+             TASK 1
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                1. Display JSON Data in a Table
+            </h2>
+
+            <p>
+                The student information below is loaded from
+                an external <strong>students.json</strong> file.
+            </p>
+
+
+            <!-- Search Filter -->
+
+            <input
+                type="text"
+                class="search-box"
+                placeholder="Search students..."
+                ng-model="searchText"
+            >
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th ng-click="sortBy('id')">
+                                ID
+                            </th>
+
+                            <th ng-click="sortBy('name')">
+                                Name
+                            </th>
+
+                            <th ng-click="sortBy('course')">
+                                Course
+                            </th>
+
+                            <th ng-click="sortBy('marks')">
+                                Marks
+                            </th>
+
+                            <th>
+                                $index
+                            </th>
+
+                            <th>
+                                $odd / $even
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr
+                            ng-repeat="
+                                student in students
+                                | filter:searchText
+                                | orderBy:sortField:reverseSort
+                            "
+                            ng-class="{
+                                'even-row': $even,
+                                'odd-row': $odd
+                            }"
+                        >
+
+                            <!-- Student ID -->
+
+                            <td>
+                                {{ student.id }}
+                            </td>
+
+
+                            <!-- Student Name -->
+
+                            <td>
+                                {{ student.name | uppercase }}
+                            </td>
+
+
+                            <!-- Course -->
+
+                            <td>
+                                {{ student.course }}
+                            </td>
+
+
+                            <!-- Marks -->
+
+                            <td>
+                                {{ student.marks | number:0 }}
+                            </td>
+
+
+                            <!-- $index -->
+
+                            <td class="index-number">
+                                {{ $index }}
+                            </td>
+
+
+                            <!-- $odd and $even -->
+
+                            <td>
+
+                                <span ng-if="$even">
+                                    Even Row
+                                </span>
+
+                                <span ng-if="$odd">
+                                    Odd Row
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="result">
+
+                <strong>Filters used:</strong>
+
+                <ul>
+
+                    <li>
+                        <strong>filter</strong> -
+                        searches the student data
+                    </li>
+
+                    <li>
+                        <strong>orderBy</strong> -
+                        sorts the table
+                    </li>
+
+                    <li>
+                        <strong>uppercase</strong> -
+                        converts names to uppercase
+                    </li>
+
+                    <li>
+                        <strong>number</strong> -
+                        formats marks
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             TASK 2
+             ng-options
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                2. Select Using ng-options
+            </h2>
+
+            <p>
+                <strong>ng-options</strong> is specifically
+                designed for generating options inside
+                a select element.
+            </p>
+
+
+            <label>
+                Select a course:
+            </label>
+
+            <br><br>
+
+
+            <select
+                ng-model="selectedCourse"
+                ng-options="course for course in courses"
+            >
+
+                <option value="">
+                    -- Select Course --
+                </option>
+
+            </select>
+
+
+            <div
+                class="result"
+                ng-if="selectedCourse"
+            >
+
+                Selected Course:
+
+                <strong>
+                    {{ selectedCourse }}
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             ng-repeat
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                Select Using ng-repeat
+            </h2>
+
+            <p>
+                Here the same course list is generated using
+                <strong>ng-repeat</strong>.
+            </p>
+
+
+            <select ng-model="selectedCourseRepeat">
+
+                <option value="">
+                    -- Select Course --
+                </option>
+
+                <option
+                    ng-repeat="course in courses"
+                    value="{{ course }}"
+                >
+                    {{ course }}
+                </option>
+
+            </select>
+
+
+            <div
+                class="result"
+                ng-if="selectedCourseRepeat"
+            >
+
+                Selected Course:
+
+                <strong>
+                    {{ selectedCourseRepeat }}
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             Difference
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                ng-options vs ng-repeat
+            </h2>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ng-options
+                        </th>
+
+                        <th>
+                            ng-repeat
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Designed specifically for
+                            generating select options.
+                        </td>
+
+                        <td>
+                            General-purpose directive for
+                            repeating HTML elements.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Works directly with
+                            <strong>ng-model</strong>.
+                        </td>
+
+                        <td>
+                            Creates individual
+                            <strong>&lt;option&gt;</strong>
+                            elements.
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            Generally preferred for
+                            select lists.
+                        </td>
+
+                        <td>
+                            Useful when you need more
+                            control over the option markup.
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- =========================================
+             AngularJS Concepts
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                AngularJS Concepts Used
+            </h2>
+
+
+            <pre>
+$http.get("students.json")
+
+ng-repeat="student in students"
+
+filter:searchText
+
+orderBy:sortField:reverseSort
+
+$index
+
+$odd
+
+$even
+
+ng-options="course for course in courses"
+            </pre>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Day 3 - AngularJS JSON Assignment
+        </p>
+
+    </footer>
+
+
+    <!-- Application JavaScript -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

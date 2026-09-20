@@ -1,0 +1,38 @@
+[
+    {
+        "id": 101,
+        "name": "Rahul",
+        "course": "Java",
+        "marks": 85
+    },
+    {
+        "id": 102,
+        "name": "Priya",
+        "course": "Python",
+        "marks": 92
+    },
+    {
+        "id": 103,
+        "name": "Nikhil",
+        "course": "JavaScript",
+        "marks": 78
+    },
+    {
+        "id": 104,
+        "name": "Anjali",
+        "course": "React",
+        "marks": 88
+    },
+    {
+        "id": 105,
+        "name": "Arjun",
+        "course": "Angular",
+        "marks": 74
+    },
+    {
+        "id": 106,
+        "name": "Sneha",
+        "course": "Node.js",
+        "marks": 95
+    }
+]
