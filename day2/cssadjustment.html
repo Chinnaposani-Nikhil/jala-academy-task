@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>CSS Page Adjustments</title>
+       <link rel="stylesheet" href="./adjstyle.css">
+
+</head>
+
+<body id="top">
+
+<header>
+
+    <h1>CSS Page Adjustments</h1>
+
+    <p>
+        Tables, Visibility, Display, Spacing and Background Images
+    </p>
+
+</header>
+
+
+<main class="container">
+
+    <section class="section">
+
+        <h2>1. Table Border and Hover Effect</h2>
+
+        <p>
+            The table below has a black border. Move the mouse
+            over a row to see the hover effect.
+        </p>
+
+        <table class="student-table">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Score</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>101</td>
+                    <td>Rahul</td>
+                    <td>HTML</td>
+                    <td>85</td>
+                </tr>
+
+                <tr>
+                    <td>102</td>
+                    <td>Priya</td>
+                    <td>CSS</td>
+                    <td>90</td>
+                </tr>
+
+                <tr>
+                    <td>103</td>
+                    <td>Arun</td>
+                    <td>JavaScript</td>
+                    <td>88</td>
+                </tr>
+
+                <tr>
+                    <td>104</td>
+                    <td>Neha</td>
+                    <td>AngularJS</td>
+                    <td>92</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <section class="section">
+
+        <h2>2. Visibility Property</h2>
+
+        <p>
+            The examples below demonstrate
+            <code>visibility: hidden</code>,
+            <code>visible</code> and
+            <code>collapse</code>.
+        </p>
+
+        <div class="visibility-container">
+
+            <div class="visibility-box visible-box">
+                Visible
+            </div>
+
+            <div class="visibility-box hidden-box">
+                Hidden
+            </div>
+
+            <div class="visibility-box visible-box">
+                Visible
+            </div>
+
+        </div>
+
+
+        <h3>Visibility Collapse</h3>
+
+        <p>
+            <code>visibility: collapse</code> is mainly useful
+            with table rows and columns.
+        </p>
+
+        <table class="collapse-table">
+
+            <tr>
+                <td>Row 1</td>
+                <td>Visible</td>
+            </tr>
+
+            <tr class="collapse-row">
+                <td>Row 2</td>
+                <td>Collapsed</td>
+            </tr>
+
+            <tr>
+                <td>Row 3</td>
+                <td>Visible</td>
+            </tr>
+
+        </table>
+
+    </section>
+
+    <section class="section">
+
+        <h2>Display Property</h2>
+
+        <div class="display-demo">
+
+            <div class="display-box display-none">
+                display: none
+            </div>
+
+            <span class="display-box display-inline">
+                display: inline
+            </span>
+
+            <span class="display-box display-inline">
+                Another inline element
+            </span>
+
+            <div class="display-box display-block">
+                display: block
+            </div>
+
+            <div class="display-contents">
+
+                <span class="display-box">
+                    display: contents
+                </span>
+
+            </div>
+
+            <div class="display-box display-list-item">
+                display: list-item
+            </div>
+
+        </div>
+
+        <div class="example-box">
+
+            <p>
+                <strong>display: none</strong> removes the element
+                from the layout.
+            </p>
+
+            <p>
+                <strong>display: inline</strong> keeps the element
+                in the same line when space is available.
+            </p>
+
+            <p>
+                <strong>display: block</strong> makes the element
+                behave like a block-level element.
+            </p>
+
+            <p>
+                <strong>display: contents</strong> causes the
+                element's box to disappear while its children
+                participate in the layout.
+            </p>
+
+            <p>
+                <strong>display: list-item</strong> makes the
+                element behave like a list item.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <h2>3. Smooth Page Navigation</h2>
+
+        <div class="navigation-links">
+
+            <a href="#bottom">
+                Click to go to bottom of page
+            </a>
+
+        </div>
+
+        <div class="long-content">
+
+            <div class="content-block">
+
+                <h3>Section 1</h3>
+
+                <p>
+                    This is a long page demonstration.
+                    Scroll through the page or use the navigation
+                    link to move to the bottom.
+                </p>
+
+            </div>
+
+            <div class="content-block">
+
+                <h3>Section 2</h3>
+
+                <p>
+                    CSS scroll-behavior is set to smooth,
+                    so internal anchor navigation moves smoothly.
+                </p>
+
+            </div>
+
+            <div class="content-block">
+
+                <h3>Section 3</h3>
+
+                <p>
+                    Adding enough content creates a long page
+                    for demonstrating page navigation.
+                </p>
+
+            </div>
+
+            <div class="content-block">
+
+                <h3>Section 4</h3>
+
+                <p>
+                    Continue scrolling to reach the bottom
+                    navigation link.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div
+            class="navigation-links"
+            id="bottom"
+        >
+
+            <a href="#top">
+                Click to go to top of page
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <h2>4. Padding and Margin</h2>
+
+        <p>
+            Padding is the space inside an element, while
+            margin is the space outside an element.
+        </p>
+
+        <div class="spacing-demo">
+
+            <div class="margin-example">
+
+                <h3>Margin Example</h3>
+
+                <p>
+                    This element has 40px margin.
+                </p>
+
+            </div>
+
+            <div class="padding-example">
+
+                <h3>Padding Example</h3>
+
+                <p>
+                    This element has 40px padding.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <h2>5. Multiple Background Images</h2>
+
+        <p>
+            CSS allows multiple background images to be applied
+            to a single element.
+        </p>
+
+        <div class="multiple-background">
+
+            <div class="background-text">
+
+                <h2>Multiple Backgrounds</h2>
+
+                <p>
+                    This section contains two background images.
+                    Each image has its own position, repeat and size.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="section">
+
+        <h2>Outline Style</h2>
+
+        <p>
+            The <strong>outline-style</strong> property controls
+            the line style of an outline.
+        </p>
+
+        <div class="outline-example">
+
+            <p>
+                This element uses a dashed outline.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="navigation-links">
+
+            <a href="#top">
+                Click to go to top of page
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 CSS Page Adjustments
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

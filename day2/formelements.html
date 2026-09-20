@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Input Attributes and Restrictions</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        color: #333;
+    }
+
+    header {
+        background-color: #1f2937;
+        color: white;
+        text-align: center;
+        padding: 35px 20px;
+    }
+
+    header h1 {
+        margin: 0 0 8px;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 30px auto;
+    }
+
+    .card {
+        background-color: white;
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h2 {
+        margin-top: 0;
+        color: #1f2937;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: bold;
+    }
+
+    input,
+    button {
+        font-family: inherit;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"],
+    input[type="month"],
+    input[type="week"] {
+        width: 100%;
+        max-width: 450px;
+        padding: 10px;
+        border: 1px solid #bbb;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+
+    input[type="range"] {
+        width: 300px;
+    }
+
+    input[type="color"] {
+        width: 80px;
+        height: 40px;
+        padding: 2px;
+    }
+
+    input[type="file"] {
+        padding: 8px 0;
+    }
+
+    .radio-group label,
+    .checkbox-group label {
+        display: inline-block;
+        margin-right: 20px;
+        font-weight: normal;
+    }
+
+    .radio-group input,
+    .checkbox-group input {
+        width: auto;
+        margin-right: 5px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    input[type="submit"],
+    input[type="reset"],
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #2563eb;
+        color: white;
+        cursor: pointer;
+    }
+
+    input[type="reset"] {
+        background-color: #6b7280;
+    }
+
+    button {
+        background-color: #16a34a;
+    }
+
+    input[type="submit"]:hover,
+    button:hover {
+        opacity: 0.9;
+    }
+
+    .example-box {
+        padding: 15px;
+        background-color: #eff6ff;
+        border-left: 4px solid #2563eb;
+        margin-top: 15px;
+    }
+
+    iframe {
+        width: 100%;
+        height: 220px;
+        border: 2px solid #cbd5e1;
+        border-radius: 6px;
+    }
+
+    .marquee-box {
+        padding: 15px;
+        background-color: #1e3a8a;
+        color: white;
+        border-radius: 5px;
+        margin-top: 15px;
+    }
+
+    .attribute-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    .attribute-table th,
+    .attribute-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .attribute-table th {
+        background-color: #1f2937;
+        color: white;
+    }
+
+    footer {
+        background-color: #1f2937;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            width: 94%;
+        }
+
+        .card {
+            padding: 20px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        .attribute-table {
+            font-size: 13px;
+        }
+    }
+</style>
+
+
+</head>
+
+<body>
+
+
+<header>
+    <h1>Input Attributes and Restrictions</h1>
+    <p>Day 2 HTML Assignment</p>
+</header>
+
+<main class="container">
+
+
+    <section class="card">
+
+        <h2>1. Basic Input Attributes</h2>
+
+        <form>
+
+            <!-- Text -->
+            <div class="form-group">
+                <label for="username">Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                >
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                >
+            </div>
+
+            <!-- Radio -->
+            <div class="form-group">
+
+                <label>Gender</label>
+
+                <div class="radio-group">
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="male"
+                        >
+                        Male
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="female"
+                        >
+                        Female
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="other"
+                        >
+                        Other
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- Checkbox -->
+            <div class="form-group">
+
+                <label>Skills</label>
+
+                <div class="checkbox-group">
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="skills"
+                            value="html"
+                        >
+                        HTML
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="skills"
+                            value="css"
+                        >
+                        CSS
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="skills"
+                            value="javascript"
+                        >
+                        JavaScript
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="buttons">
+
+                <input
+                    type="submit"
+                    value="Submit"
+                >
+
+                <input
+                    type="reset"
+                    value="Reset"
+                >
+
+                <button
+                    type="button"
+                    onclick="showMessage()"
+                >
+                    Normal Button
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <section class="card">
+
+        <h2>2. HTML5 Input Types</h2>
+
+        <form>
+
+         
+            <div class="form-group">
+
+                <label for="age">Age</label>
+
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    min="18"
+                    max="60"
+                >
+
+            </div>
+
+          
+            <div class="form-group">
+
+                <label for="experience">
+                    Experience Level
+                </label>
+
+                <input
+                    type="range"
+                    id="experience"
+                    name="experience"
+                    min="0"
+                    max="10"
+                    value="5"
+                >
+
+            </div>
+
+            
+            <div class="form-group">
+
+                <label for="color">
+                    Select Color
+                </label>
+
+                <input
+                    type="color"
+                    id="color"
+                    name="color"
+                    value="#2563eb"
+                >
+
+            </div>
+
+            
+            <div class="form-group">
+
+                <label for="dob">
+                    Date of Birth
+                </label>
+
+                <input
+                    type="date"
+                    id="dob"
+                    name="dob"
+                >
+
+            </div>
+
+             
+            <div class="form-group">
+
+                <label for="resume">
+                    Upload Resume
+                </label>
+
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                >
+
+            </div>
+
+            <!-- Time -->
+            <div class="form-group">
+
+                <label for="appointment">
+                    Appointment Time
+                </label>
+
+                <input
+                    type="time"
+                    id="appointment"
+                    name="appointment"
+                >
+
+            </div>
+
+            <!-- Month -->
+            <div class="form-group">
+
+                <label for="joiningMonth">
+                    Joining Month
+                </label>
+
+                <input
+                    type="month"
+                    id="joiningMonth"
+                    name="joiningMonth"
+                >
+
+            </div>
+
+            <!-- Week -->
+            <div class="form-group">
+
+                <label for="trainingWeek">
+                    Training Week
+                </label>
+
+                <input
+                    type="week"
+                    id="trainingWeek"
+                    name="trainingWeek"
+                >
+
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="example@email.com"
+                >
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <section class="card">
+
+        <h2>3. Input Restrictions</h2>
+
+        <div class="form-group">
+
+            <label for="disabledField">
+                Disabled
+            </label>
+
+            <input
+                type="text"
+                id="disabledField"
+                value="This field is disabled"
+                disabled
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="maxNumber">
+                Maximum Value
+            </label>
+
+            <input
+                type="number"
+                id="maxNumber"
+                min="1"
+                max="100"
+                value="50"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="maxLength">
+                Maximum Characters
+            </label>
+
+            <input
+                type="text"
+                id="maxLength"
+                maxlength="20"
+                placeholder="Maximum 20 characters"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="minNumber">
+                Minimum Value
+            </label>
+
+            <input
+                type="number"
+                id="minNumber"
+                min="10"
+                value="10"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="readOnly">
+                Read Only
+            </label>
+
+            <input
+                type="text"
+                id="readOnly"
+                value="This value cannot be edited"
+                readonly
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="requiredField">
+                Required Field
+            </label>
+
+            <input
+                type="text"
+                id="requiredField"
+                required
+                placeholder="This field is required"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="sizeField">
+                Size Attribute
+            </label>
+
+            <input
+                type="text"
+                id="sizeField"
+                size="30"
+                placeholder="Size is set to 30"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="valueField">
+                Value Attribute
+            </label>
+
+            <input
+                type="text"
+                id="valueField"
+                value="Default Value"
+            >
+
+        </div>
+
+        <div class="example-box">
+
+            <strong>Restrictions demonstrated:</strong>
+
+            <p>
+                disabled, max, maxlength, min, readonly,
+                required, size and value
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="card">
+
+        <h2>4. Target Attribute</h2>
+
+        <p>
+            The target attribute specifies where the linked document
+            should be opened.
+        </p>
+
+        <p>
+
+            <a
+                href="https://www.google.com"
+                target="_blank"
+            >
+                Open Google using target="_blank"
+            </a>
+
+        </p>
+
+        <p>
+
+            <a
+                href="sample.html"
+                target="_self"
+            >
+                Open sample page using target="_self"
+            </a>
+
+        </p>
+
+        <div class="example-box">
+
+            <strong>target="_blank"</strong>
+
+            <p>
+                Opens the linked page in a new tab or browsing context.
+            </p>
+
+            <strong>target="_self"</strong>
+
+            <p>
+                Opens the linked page in the current tab or browsing
+                context. This is the default target behavior.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="card">
+
+        <h2>5. I-frame</h2>
+
+        <p>
+            An iframe allows another HTML document or webpage to be
+            embedded inside the current page.
+        </p>
+
+        <iframe
+            src="sample.html"
+            title="Sample HTML Page"
+        ></iframe>
+
+    </section>
+
+    <section class="card">
+
+        <h2>6. Marquee</h2>
+
+        <p>
+            The marquee element creates scrolling text.
+            It is shown here because it is specifically required
+            by the assignment.
+        </p>
+
+        <div class="marquee-box">
+
+            <marquee
+                behavior="scroll"
+                direction="left"
+                scrollamount="5"
+            >
+                Welcome to the HTML Input Attributes and Restrictions
+                demonstration page!
+            </marquee>
+
+        </div>
+
+    </section>
+
+
+    <section class="card">
+
+        <h2>Input Attribute Summary</h2>
+
+        <table class="attribute-table">
+
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>disabled</td>
+                    <td>Prevents the user from interacting with the input.</td>
+                </tr>
+
+                <tr>
+                    <td>max</td>
+                    <td>Sets the maximum allowed value.</td>
+                </tr>
+
+                <tr>
+                    <td>maxlength</td>
+                    <td>Sets the maximum number of characters.</td>
+                </tr>
+
+                <tr>
+                    <td>min</td>
+                    <td>Sets the minimum allowed value.</td>
+                </tr>
+
+                <tr>
+                    <td>readonly</td>
+                    <td>Allows viewing but prevents editing.</td>
+                </tr>
+
+                <tr>
+                    <td>required</td>
+                    <td>Requires the user to enter a value before submission.</td>
+                </tr>
+
+                <tr>
+                    <td>size</td>
+                    <td>Specifies the visible width of certain text inputs.</td>
+                </tr>
+
+                <tr>
+                    <td>value</td>
+                    <td>Specifies the initial value of an input.</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>&copy; 2026 HTML Input Attributes</p>
+</footer>
+
+
+<script>
+
+    function showMessage() {
+        alert("Normal button clicked!");
+    }
+
+</script>
+
+
+</body>
+
+</html>

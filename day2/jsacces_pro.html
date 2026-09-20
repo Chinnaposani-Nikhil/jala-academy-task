@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>JavaScript Access and Properties</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        color: #333;
+    }
+
+    header {
+        padding: 35px 20px;
+        text-align: center;
+        background-color: #1f2937;
+        color: white;
+    }
+
+    header h1 {
+        margin: 0 0 8px;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 30px auto;
+    }
+
+    .card {
+        background-color: white;
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h2 {
+        margin-top: 0;
+        color: #1f2937;
+    }
+
+    button {
+        padding: 10px 18px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #2563eb;
+        color: white;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    button:hover {
+        background-color: #1d4ed8;
+    }
+
+    .danger-button {
+        background-color: #dc2626;
+    }
+
+    .danger-button:hover {
+        background-color: #b91c1c;
+    }
+
+    .counter {
+        font-size: 40px;
+        font-weight: bold;
+        color: #2563eb;
+        margin: 20px 0;
+    }
+
+    .output {
+        margin-top: 15px;
+        padding: 15px;
+        background-color: #eff6ff;
+        border-left: 4px solid #2563eb;
+    }
+
+    .demo-box {
+        padding: 20px;
+        margin-top: 15px;
+        background-color: #f8fafc;
+        border: 1px solid #d1d5db;
+        border-radius: 5px;
+    }
+
+    code {
+        background-color: #f1f5f9;
+        padding: 3px 6px;
+        border-radius: 4px;
+    }
+
+    footer {
+        padding: 20px;
+        text-align: center;
+        background-color: #1f2937;
+        color: white;
+    }
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>JavaScript Access and Properties</h1>
+    <p>this, call(), apply(), Counters, Getters, Setters and Prototypes</p>
+</header>
+
+
+<main class="container">
+
+
+    <section class="card">
+
+        <h2>1. Using the "this" Keyword</h2>
+
+        <p>
+            Click the button below. The button uses
+            <code>this</code> to refer to itself and then
+            disappears.
+        </p>
+
+        <button
+            class="danger-button"
+            onclick="hideButton(this)"
+        >
+            Click Me - I Will Disappear
+        </button>
+
+    </section>
+    <section class="card">
+
+        <h2>2. call() and apply()</h2>
+
+        <p>
+            Both methods can call a function with a specific
+            value of <code>this</code>.
+        </p>
+
+        <button onclick="runCallExample()">
+            Run call()
+        </button>
+
+        <button onclick="runApplyExample()">
+            Run apply()
+        </button>
+
+        <div
+            class="output"
+            id="callApplyResult"
+        >
+            Click a button to see the result.
+        </div>
+
+    </section>
+
+
+    <section class="card">
+
+        <h2>3. Counter</h2>
+
+        <p>
+            Every time the Count button is clicked,
+            the counter value increases by one.
+        </p>
+
+        <div
+            class="counter"
+            id="counterValue"
+        >
+            0
+        </div>
+
+        <button onclick="increaseCounter()">
+            Count
+        </button>
+
+        <button onclick="resetCounter()">
+            Reset
+        </button>
+
+    </section>
+
+
+    <section class="card">
+
+        <h2>4. Counter Using Getter and Setter</h2>
+
+        <p>
+            This counter uses JavaScript getter and setter
+            accessors to control the value.
+        </p>
+
+        <div
+            class="counter"
+            id="accessorCounter"
+        >
+            0
+        </div>
+
+        <button onclick="increaseAccessorCounter()">
+            Count
+        </button>
+
+        <button onclick="resetAccessorCounter()">
+            Reset
+        </button>
+
+        <div
+            class="output"
+            id="accessorResult"
+        >
+            Current value: 0
+        </div>
+
+    </section>
+    <section class="card">
+
+        <h2>5. Adding Properties Using Prototype</h2>
+
+        <p>
+            A new property and method are added to the
+            <code>Person</code> function using its prototype.
+        </p>
+
+        <button onclick="showPrototypeExample()">
+            Show Prototype Example
+        </button>
+
+        <div
+            class="demo-box"
+            id="prototypeResult"
+        >
+            Click the button to see the result.
+        </div>
+
+    </section>
+
+    <section class="card">
+
+        <h2>JavaScript Keywords and Built-in Functions</h2>
+
+        <p>
+            Some commonly used JavaScript keywords are:
+        </p>
+
+        <div class="output">
+
+            <strong>
+                var, let, const, if, else, for, while,
+                function, return, class, new, this,
+                typeof, instanceof, try, catch, throw
+            </strong>
+
+        </div>
+
+        <p>
+            Some commonly used built-in functions and methods are:
+        </p>
+
+        <div class="output">
+
+            <strong>
+                parseInt(), parseFloat(), Number(),
+                String(), isNaN(), setTimeout(),
+                setInterval(), alert(), console.log()
+            </strong>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 JavaScript Access and Properties
+    </p>
+
+</footer>
+ <script src="./acces_properties.js"></script>
+</body>
+
+</html>

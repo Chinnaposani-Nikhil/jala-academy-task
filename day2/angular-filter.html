@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="filterApp">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>AngularJS Filters and Services</title>
+
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<!-- External JavaScript -->
+<script src="app.js"></script>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        color: #333;
+    }
+
+    header {
+        padding: 35px 20px;
+        text-align: center;
+        background-color: #1f2937;
+        color: white;
+    }
+
+    header h1 {
+        margin: 0 0 8px;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 30px auto;
+    }
+
+    .card {
+        background-color: white;
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h2 {
+        margin-top: 0;
+        color: #1f2937;
+    }
+
+    .result {
+        margin: 15px 0;
+        padding: 15px;
+        background-color: #eff6ff;
+        border-left: 4px solid #2563eb;
+    }
+
+    input {
+        width: 100%;
+        max-width: 450px;
+        padding: 10px;
+        border: 1px solid #bbb;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+
+    button {
+        padding: 10px 18px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #2563eb;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #1d4ed8;
+    }
+
+    button.secondary {
+        background-color: #16a34a;
+    }
+
+    button.danger {
+        background-color: #dc2626;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th {
+        background-color: #1f2937;
+        color: white;
+    }
+
+    code {
+        padding: 3px 6px;
+        background-color: #f1f5f9;
+        border-radius: 4px;
+    }
+
+    .status-success {
+        color: #15803d;
+        font-weight: bold;
+    }
+
+    .status-error {
+        color: #dc2626;
+        font-weight: bold;
+    }
+
+    footer {
+        padding: 20px;
+        text-align: center;
+        background-color: #1f2937;
+        color: white;
+    }
+
+    @media (max-width: 600px) {
+
+        .container {
+            width: 94%;
+        }
+
+        .card {
+            padding: 20px;
+        }
+
+        table {
+            font-size: 14px;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>AngularJS Filters and Services</h1>
+
+    <p>
+        Filters, Services, HTTP Methods and AngularJS APIs
+    </p>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- =========================================
+         1. ANGULARJS FILTERS
+         ========================================= -->
+
+    <section
+        class="card"
+        ng-controller="FilterController"
+    >
+
+        <h2>1. AngularJS Filters</h2>
+
+        <p>
+            AngularJS filters format and transform data
+            before displaying it in the view.
+        </p>
+
+
+        <div class="result">
+
+            <p>
+                <strong>Original name:</strong>
+                {{ name }}
+            </p>
+
+            <p>
+                <strong>Uppercase:</strong>
+                {{ name | uppercase }}
+            </p>
+
+            <p>
+                <strong>Lowercase:</strong>
+                {{ name | lowercase }}
+            </p>
+
+            <p>
+                <strong>Number:</strong>
+                {{ amount | number:2 }}
+            </p>
+
+            <p>
+                <strong>Date:</strong>
+                {{ today | date:"dd-MM-yyyy" }}
+            </p>
+
+        </div>
+
+
+        <h3>Custom Filter</h3>
+
+        <input
+            type="text"
+            ng-model="message"
+            placeholder="Enter a message"
+        >
+
+        <div class="result">
+
+            <strong>Custom Filter Result:</strong>
+
+            {{ message | reverseText }}
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         2. ANGULARJS SERVICES
+         ========================================= -->
+
+    <section
+        class="card"
+        ng-controller="ServiceController"
+    >
+
+        <h2>2. AngularJS Services</h2>
+
+        <p>
+            AngularJS provides reusable services such as
+            <code>$location</code>, <code>$http</code> and
+            <code>$timeout</code>.
+        </p>
+
+
+        <div class="result">
+
+            <p>
+                <strong>Current URL:</strong>
+                {{ currentUrl }}
+            </p>
+
+            <p>
+                <strong>Timeout message:</strong>
+                {{ timeoutMessage }}
+            </p>
+
+        </div>
+
+
+        <button
+            ng-click="startTimer()"
+        >
+            Start $timeout
+        </button>
+
+
+        <button
+            class="secondary"
+            ng-click="getUsers()"
+        >
+            Call $http GET
+        </button>
+
+
+        <div class="result">
+
+            <p>
+                <strong>Custom Service:</strong>
+                {{ customMessage }}
+            </p>
+
+        </div>
+
+
+        <div
+            class="result"
+            ng-if="users.length > 0"
+        >
+
+            <h3>HTTP Response Data</h3>
+
+            <ul>
+
+                <li ng-repeat="user in users">
+
+                    {{ user.name }}
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         3. HTTP METHODS
+         ========================================= -->
+
+    <section
+        class="card"
+        ng-controller="HttpController"
+    >
+
+        <h2>3. HTTP GET and POST</h2>
+
+        <p>
+            This section demonstrates AngularJS
+            <code>$http.get()</code> and
+            <code>$http.post()</code>.
+        </p>
+
+
+        <button
+            ng-click="performGet()"
+        >
+            GET Request
+        </button>
+
+
+        <button
+            class="secondary"
+            ng-click="performPost()"
+        >
+            POST Request
+        </button>
+
+
+        <div
+            class="result"
+            ng-if="response.status"
+        >
+
+            <p>
+                <strong>Status:</strong>
+                {{ response.status }}
+            </p>
+
+            <p>
+                <strong>Status Text:</strong>
+                {{ response.statusText }}
+            </p>
+
+            <p>
+                <strong>Config Method:</strong>
+                {{ response.config.method }}
+            </p>
+
+            <p>
+                <strong>Config URL:</strong>
+                {{ response.config.url }}
+            </p>
+
+            <p>
+                <strong>Response Data:</strong>
+            </p>
+
+            <pre>{{ response.data | json }}</pre>
+
+        </div>
+
+
+        <p
+            class="status-success"
+            ng-if="successMessage"
+        >
+            {{ successMessage }}
+        </p>
+
+
+        <p
+            class="status-error"
+            ng-if="errorMessage"
+        >
+            {{ errorMessage }}
+        </p>
+
+    </section>
+
+
+    <!-- =========================================
+         4. ANGULAR API
+         ========================================= -->
+
+    <section
+        class="card"
+        ng-controller="ApiController"
+    >
+
+        <h2>4. AngularJS API</h2>
+
+        <p>
+            AngularJS provides APIs for working with
+            different parts of an application.
+        </p>
+
+
+        <div class="result">
+
+            <p>
+                <strong>Original Text:</strong>
+                {{ text }}
+            </p>
+
+            <p>
+                <strong>Uppercase:</strong>
+                {{ upperText }}
+            </p>
+
+            <p>
+                <strong>Lowercase:</strong>
+                {{ lowerText }}
+            </p>
+
+            <p>
+                <strong>Is Number:</strong>
+                {{ numberCheck }}
+            </p>
+
+            <p>
+                <strong>Is Array:</strong>
+                {{ arrayCheck }}
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 AngularJS Filters and Services
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
