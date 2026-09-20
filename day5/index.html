@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="day5App">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Day 5 - AngularJS Elements and Validations</title>
+
+
+    <!-- AngularJS -->
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js">
+    </script>
+
+
+    <!-- AngularJS Route -->
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js">
+    </script>
+
+
+    <!-- AngularJS Animate -->
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js">
+    </script>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================== */
+
+        header {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+
+        /* =========================================
+           NAVIGATION
+        ========================================== */
+
+        nav {
+            background: #111827;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 9px 15px;
+            margin: 3px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: #2563eb;
+        }
+
+
+        /* =========================================
+           MAIN
+        ========================================== */
+
+        main {
+            width: 92%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .section h2 {
+            margin-top: 0;
+            color: #1e3a8a;
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================== */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            max-width: 500px;
+            padding: 11px;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: normal;
+        }
+
+
+        /* =========================================
+           BUTTON
+        ========================================== */
+
+        button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+
+            background: #2563eb;
+            color: white;
+
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+
+        /* =========================================
+           VALIDATION
+        ========================================== */
+
+        .error {
+            color: #dc2626;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .success {
+            color: #16a34a;
+            margin-top: 15px;
+            padding: 12px;
+            background: #dcfce7;
+            border-radius: 6px;
+        }
+
+
+        /* =========================================
+           ANIMATION
+        ========================================== */
+
+        .animation-area {
+            min-height: 120px;
+            margin-top: 20px;
+        }
+
+
+        /*
+            ng-show / ng-hide animation
+
+            AngularJS adds/removes classes during
+            the show/hide process.
+        */
+
+        .animated-message {
+            padding: 25px;
+            background: #dbeafe;
+            border-left: 5px solid #2563eb;
+            border-radius: 8px;
+        }
+
+
+        .animated-message.ng-hide-add,
+        .animated-message.ng-hide-remove {
+            transition: all 0.5s ease;
+        }
+
+
+        .animated-message.ng-hide {
+            opacity: 0;
+            transform: translateY(-15px);
+        }
+
+
+        /* =========================================
+           ROUTING
+        ========================================== */
+
+        .route-content {
+            min-height: 250px;
+        }
+
+
+        .route-card {
+            padding: 20px;
+            background: #eff6ff;
+            border-radius: 8px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 600px) {
+
+            main {
+                width: 95%;
+            }
+
+            .section {
+                padding: 18px;
+            }
+
+            nav a {
+                display: block;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header>
+
+        <h1>
+            AngularJS Elements & Validations
+        </h1>
+
+        <p>
+            Day 5 Assignment
+        </p>
+
+    </header>
+
+
+    <!-- =========================================
+         ROUTING NAVIGATION
+    ========================================== -->
+
+    <nav>
+
+        <a href="#!/home">
+            Home
+        </a>
+
+        <a href="#!/form">
+            Form
+        </a>
+
+        <a href="#!/about">
+            About
+        </a>
+
+    </nav>
+
+
+    <!-- =========================================
+         ROUTE CONTENT
+    ========================================== -->
+
+    <main>
+
+        <div
+            class="route-content"
+            ng-view
+        ></div>
+
+    </main>
+
+
+    <!-- AngularJS Application -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

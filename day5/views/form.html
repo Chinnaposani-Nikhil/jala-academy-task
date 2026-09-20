@@ -1,0 +1,408 @@
+<section class="section">
+
+    <h2>
+        1 & 2. AngularJS Form Elements & Validation
+    </h2>
+
+
+    <form
+        name="studentForm"
+        novalidate
+        ng-submit="submitForm(studentForm)"
+    >
+
+
+        <!-- =====================================
+             TEXTBOX
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="name">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                ng-model="formData.name"
+                valid-name
+                required
+                placeholder="Enter your name"
+            >
+
+
+            <!-- Required validation -->
+
+            <div
+                class="error"
+                ng-show="
+                    studentForm.name.$touched &&
+                    studentForm.name.$error.required
+                "
+            >
+
+                Name is required.
+
+            </div>
+
+
+            <!-- Custom validation -->
+
+            <div
+                class="error"
+                ng-show="
+                    studentForm.name.$touched &&
+                    studentForm.name.$error.validName
+                "
+            >
+
+                Name should contain only letters and spaces.
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             EMAIL
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                ng-model="formData.email"
+                required
+                placeholder="example@email.com"
+            >
+
+
+            <div
+                class="error"
+                ng-show="
+                    studentForm.email.$touched &&
+                    studentForm.email.$error.required
+                "
+            >
+
+                Email is required.
+
+            </div>
+
+
+            <div
+                class="error"
+                ng-show="
+                    studentForm.email.$touched &&
+                    studentForm.email.$error.email
+                "
+            >
+
+                Please enter a valid email address.
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             SELECTBOX
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="course">
+                Select Course
+            </label>
+
+            <select
+                id="course"
+                name="course"
+                ng-model="formData.course"
+                ng-options="course for course in courses"
+                required
+            >
+
+                <option value="">
+                    -- Select Course --
+                </option>
+
+            </select>
+
+
+            <div
+                class="error"
+                ng-show="
+                    studentForm.course.$touched &&
+                    studentForm.course.$error.required
+                "
+            >
+
+                Please select a course.
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             RADIO BUTTON
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label>
+                Gender
+            </label>
+
+
+            <div class="radio-group">
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Male"
+                        ng-model="formData.gender"
+                        required
+                    >
+
+                    Male
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Female"
+                        ng-model="formData.gender"
+                        required
+                    >
+
+                    Female
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Other"
+                        ng-model="formData.gender"
+                        required
+                    >
+
+                    Other
+
+                </label>
+
+            </div>
+
+
+            <div
+                class="error"
+                ng-show="
+                    studentForm.gender.$touched &&
+                    studentForm.gender.$error.required
+                "
+            >
+
+                Please select your gender.
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             CHECKBOX
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label>
+                Skills
+            </label>
+
+
+            <div class="checkbox-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        ng-model="formData.html"
+                    >
+
+                    HTML
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        ng-model="formData.css"
+                    >
+
+                    CSS
+
+                </label>
+
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        ng-model="formData.javascript"
+                    >
+
+                    JavaScript
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             TERMS CHECKBOX
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="terms"
+                    ng-model="formData.terms"
+                    required
+                >
+
+                I agree to the terms and conditions.
+
+            </label>
+
+
+            <div
+                class="error"
+                ng-show="
+                    studentForm.terms.$touched &&
+                    studentForm.terms.$error.required
+                "
+            >
+
+                You must accept the terms.
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             BUTTONS
+        ====================================== -->
+
+        <button
+            type="submit"
+            ng-disabled="studentForm.$invalid"
+        >
+            Submit
+        </button>
+
+
+        <button
+            type="button"
+            ng-click="resetForm(studentForm)"
+        >
+            Reset
+        </button>
+
+
+        <!-- =====================================
+             SUCCESS MESSAGE
+        ====================================== -->
+
+        <div
+            class="success"
+            ng-show="showMessage"
+        >
+
+            Form submitted successfully!
+
+            <br><br>
+
+            Welcome,
+            <strong>{{ formData.name }}</strong>.
+
+        </div>
+
+
+    </form>
+
+</section>
+
+
+
+<!-- =========================================
+     3. ANIMATION
+========================================== -->
+
+<section class="section">
+
+    <h2>
+        3. ng-show / ng-hide Animation
+    </h2>
+
+    <p>
+        Click the button to show and hide the animated message.
+    </p>
+
+
+    <button
+        ng-click="showAnimation = !showAnimation"
+    >
+
+        {{ showAnimation ? "Hide Message" : "Show Message" }}
+
+    </button>
+
+
+    <div class="animation-area">
+
+        <div
+            class="animated-message"
+            ng-show="showAnimation"
+        >
+
+            <h3>
+                AngularJS Animation
+            </h3>
+
+            <p>
+                This message uses ng-show together with
+                the AngularJS ngAnimate module.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
