@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="eventApp">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Day 4 - AngularJS Events</title>
+
+
+    <!-- AngularJS -->
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js">
+    </script>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            color: #1f2937;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================== */
+
+        header {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+
+
+        main {
+            width: 92%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+
+        .section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .section h2 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+
+
+
+        button {
+            border: none;
+            padding: 10px 18px;
+            margin: 5px;
+
+            background-color: #2563eb;
+            color: white;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+
+        button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+
+        th,
+        td {
+            border: 1px solid #d1d5db;
+            padding: 12px;
+            text-align: left;
+        }
+
+
+        th {
+            background-color: #1e3a8a;
+            color: white;
+        }
+
+
+        tr:hover {
+            background-color: #eff6ff;
+        }
+
+
+
+        .event-box {
+            width: 100%;
+            height: 180px;
+
+            background-color: #dbeafe;
+
+            border: 2px dashed #2563eb;
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            transition: 0.2s;
+        }
+
+
+        .event-box:hover {
+            background-color: #bfdbfe;
+        }
+
+
+        .event-result {
+            margin-top: 15px;
+
+            padding: 15px;
+
+            background-color: #eff6ff;
+
+            border-left: 4px solid #2563eb;
+
+            border-radius: 5px;
+        }
+
+
+        /* =========================================
+           SHOW / HIDE
+        ========================================== */
+
+        .message-box {
+            margin-top: 15px;
+
+            padding: 15px;
+
+            background-color: #dcfce7;
+
+            border-left: 4px solid #16a34a;
+
+            border-radius: 5px;
+        }
+
+
+        /* =========================================
+           CHECKBOX
+        ========================================== */
+
+        .control-box {
+            padding: 20px;
+
+            background-color: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 8px;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================== */
+
+        footer {
+            background-color: #111827;
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+        }
+
+
+        @media (max-width: 700px) {
+
+            main {
+                width: 95%;
+            }
+
+            .section {
+                padding: 18px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body
+    ng-controller="EventController"
+>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header>
+
+        <h1>
+            AngularJS Events
+        </h1>
+
+        <p>
+            MySQL, DOM, Directives and Events
+        </p>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =========================================
+             1. MYSQL DATA
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                1. Fetch Data from MySQL
+            </h2>
+
+            <p>
+                The AngularJS application gets student data
+                through a Node.js API connected to MySQL.
+            </p>
+
+
+            <button
+                ng-click="loadStudents()"
+            >
+                Load Students
+            </button>
+
+
+            <div
+                ng-show="loading"
+                class="event-result"
+            >
+
+                Loading student data...
+
+            </div>
+
+
+            <div
+                ng-show="errorMessage"
+                class="event-result"
+            >
+
+                {{ errorMessage }}
+
+            </div>
+
+
+            <div
+                class="table-container"
+                ng-show="students.length > 0"
+            >
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Course</th>
+                            <th>Marks</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr
+                            ng-repeat="student in students"
+                        >
+
+                            <td>
+                                {{ student.id }}
+                            </td>
+
+                            <td>
+                                {{ student.name }}
+                            </td>
+
+                            <td>
+                                {{ student.course }}
+                            </td>
+
+                            <td>
+                                {{ student.marks }}
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             2. ng-show
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                2. ng-show
+            </h2>
+
+            <p>
+                Click the button to show or hide the message.
+            </p>
+
+
+            <button
+                ng-click="showMessage = !showMessage"
+            >
+                Toggle Message
+            </button>
+
+
+            <div
+                class="message-box"
+                ng-show="showMessage"
+            >
+
+                This message is currently visible
+                because <strong>ng-show</strong> is true.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             ng-hide
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                ng-hide
+            </h2>
+
+            <p>
+                The message is hidden when the condition
+                becomes true.
+            </p>
+
+
+            <button
+                ng-click="hideMessage = !hideMessage"
+            >
+                Toggle Hide
+            </button>
+
+
+            <div
+                class="message-box"
+                ng-hide="hideMessage"
+            >
+
+                This message uses
+                <strong>ng-hide</strong>.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             ng-disabled
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                ng-disabled
+            </h2>
+
+            <div class="control-box">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        ng-model="disableButton"
+                    >
+
+                    Disable the button
+
+                </label>
+
+
+                <br><br>
+
+
+                <button
+                    ng-disabled="disableButton"
+                    ng-click="buttonClicked = true"
+                >
+                    Click Me
+                </button>
+
+
+                <p
+                    ng-show="buttonClicked"
+                >
+                    Button was clicked successfully.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             3. ng-click
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                3. ng-click Event
+            </h2>
+
+            <p>
+                The following button uses
+                <strong>ng-click</strong>.
+            </p>
+
+
+            <button
+                ng-click="increaseCount()"
+            >
+                Click Me
+            </button>
+
+
+            <div class="event-result">
+
+                Button clicked:
+
+                <strong>
+                    {{ clickCount }}
+                </strong>
+
+                times.
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             ng-mousemove
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                ng-mousemove Event
+            </h2>
+
+            <p>
+                Move your mouse inside the box.
+            </p>
+
+
+            <div
+                class="event-box"
+                ng-mousemove="mouseMoved($event)"
+            >
+
+                <div>
+
+                    <strong>
+                        Move your mouse here
+                    </strong>
+
+                    <br><br>
+
+                    Mouse X:
+                    {{ mouseX }}
+
+                    <br>
+
+                    Mouse Y:
+                    {{ mouseY }}
+
+                </div>
+
+            </div>
+
+
+            <div class="event-result">
+
+                Mouse movement events:
+
+                <strong>
+                    {{ mouseMoveCount }}
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             $event
+        ========================================== -->
+
+        <section class="section">
+
+            <h2>
+                Using $event
+            </h2>
+
+            <p>
+                AngularJS provides the current browser event
+                through the <strong>$event</strong> object.
+            </p>
+
+
+            <button
+                ng-click="showEventDetails($event)"
+            >
+                Show Event Details
+            </button>
+
+
+            <div
+                class="event-result"
+                ng-show="eventType"
+            >
+
+                Event Type:
+
+                <strong>
+                    {{ eventType }}
+                </strong>
+
+                <br><br>
+
+                Click X:
+
+                <strong>
+                    {{ eventX }}
+                </strong>
+
+                <br>
+
+                Click Y:
+
+                <strong>
+                    {{ eventY }}
+                </strong>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Day 4 - AngularJS Events Assignment
+        </p>
+
+    </footer>
+
+
+    <!-- AngularJS Application -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <!-- Viewport for responsive design -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Day 4 - CSS Compatibility</title>
+
+
+    <style>
+
+        
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            color: #1f2937;
+        }
+
+
+        header {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+
+        nav {
+            background-color: #111827;
+            text-align: center;
+            padding: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            margin: 0 4px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #2563eb;
+        }
+
+
+        main {
+            width: 92%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .section h2 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+
+
+
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #94a3b8;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1e3a8a;
+            color: white;
+        }
+
+
+        .fixed-table {
+            table-layout: fixed;
+        }
+
+        .fixed-table th,
+        .fixed-table td {
+            word-wrap: break-word;
+        }
+
+
+
+        .auto-table {
+            table-layout: auto;
+        }
+
+
+
+        .list-container {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 20px;
+        }
+
+        .list-box {
+            background-color: #eff6ff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .disc-list {
+            list-style-type: disc;
+        }
+
+        .circle-list {
+            list-style-type: circle;
+        }
+
+        .square-list {
+            list-style-type: square;
+        }
+
+        .decimal-list {
+            list-style-type: decimal;
+        }
+
+        .roman-list {
+            list-style-type: upper-roman;
+        }
+
+        .alpha-list {
+            list-style-type: upper-alpha;
+        }
+
+
+        
+
+        .grid {
+            display: grid;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+
+        /* Equal columns */
+
+        .grid-three {
+            grid-template-columns:
+                repeat(3, 1fr);
+        }
+
+
+        /* Different width columns */
+
+        .grid-different {
+            grid-template-columns:
+                1fr 2fr 1fr;
+        }
+
+
+        /* Auto-fit responsive grid */
+
+        .grid-responsive {
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+        }
+
+
+        .grid-item {
+            background-color: #2563eb;
+            color: white;
+            padding: 30px 15px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+
+        .hero {
+            height: 450px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.45),
+                    rgba(0, 0, 0, 0.45)
+                ),
+                url("https://picsum.photos/id/1018/1600/900");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            color: white;
+
+            border-radius: 12px;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            padding: 25px;
+        }
+
+        .hero-content h2 {
+            color: white;
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+
+        .responsive-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .viewport-box {
+            background-color: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+
+       
+        @media (max-width: 800px) {
+
+            .grid-three {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-different {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero {
+                height: 350px;
+            }
+
+            .hero-content h2 {
+                font-size: 32px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            nav a {
+                display: block;
+                margin: 4px 0;
+            }
+
+            main {
+                width: 94%;
+            }
+
+            .section {
+                padding: 18px;
+            }
+
+            .grid-three {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-different {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                height: 300px;
+            }
+
+            .hero-content h2 {
+                font-size: 27px;
+            }
+
+            .hero-content p {
+                font-size: 15px;
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+
+    <header>
+
+        <h1>CSS Compatibility</h1>
+
+        <p>
+            Day 4 - Tables, Lists, Grid, Hero Image
+            and Responsive Design
+        </p>
+
+    </header>
+
+
+   
+
+    <nav>
+
+        <a href="#tables">Tables</a>
+
+        <a href="#lists">Lists</a>
+
+        <a href="#grid">Grid</a>
+
+        <a href="#hero">Hero Image</a>
+
+        <a href="#responsive">Responsive</a>
+
+    </nav>
+
+
+    <main>
+
+
+        <section
+            class="section"
+            id="tables"
+        >
+
+            <h2>
+                1. Table Layout
+            </h2>
+
+            <p>
+                CSS provides two common table layout behaviors:
+                <strong>fixed</strong> and <strong>auto</strong>.
+            </p>
+
+
+            <h3>
+                Table Layout: Fixed
+            </h3>
+
+            <div class="table-container">
+
+                <table class="fixed-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Student ID
+                            </th>
+
+                            <th>
+                                Student Name
+                            </th>
+
+                            <th>
+                                Course
+                            </th>
+
+                            <th>
+                                Description
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>101</td>
+
+                            <td>Rahul</td>
+
+                            <td>Java</td>
+
+                            <td>
+                                Java programming course
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>102</td>
+
+                            <td>Priya</td>
+
+                            <td>Python</td>
+
+                            <td>
+                                Python development course
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <h3>
+                Table Layout: Auto / None
+            </h3>
+
+            <div class="table-container">
+
+                <table class="auto-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Name</th>
+
+                            <th>Course</th>
+
+                            <th>Long Description</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>201</td>
+
+                            <td>Anjali</td>
+
+                            <td>React</td>
+
+                            <td>
+                                This column automatically adjusts
+                                according to the content.
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>202</td>
+
+                            <td>Arjun</td>
+
+                            <td>Angular</td>
+
+                            <td>
+                                Auto layout allows the browser to
+                                determine column widths based on content.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <section
+            class="section"
+            id="lists"
+        >
+
+            <h2>
+                2. List Style Types
+            </h2>
+
+            <p>
+                The <strong>list-style-type</strong> property
+                changes the marker used by a list.
+            </p>
+
+
+            <div class="list-container">
+
+
+                <div class="list-box">
+
+                    <h3>Disc</h3>
+
+                    <ul class="disc-list">
+
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="list-box">
+
+                    <h3>Circle</h3>
+
+                    <ul class="circle-list">
+
+                        <li>React</li>
+                        <li>Angular</li>
+                        <li>Vue</li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="list-box">
+
+                    <h3>Square</h3>
+
+                    <ul class="square-list">
+
+                        <li>Node.js</li>
+                        <li>Express</li>
+                        <li>MongoDB</li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="list-box">
+
+                    <h3>Decimal</h3>
+
+                    <ol class="decimal-list">
+
+                        <li>Login</li>
+                        <li>Dashboard</li>
+                        <li>Profile</li>
+
+                    </ol>
+
+                </div>
+
+
+                <div class="list-box">
+
+                    <h3>Roman</h3>
+
+                    <ol class="roman-list">
+
+                        <li>Frontend</li>
+                        <li>Backend</li>
+                        <li>Database</li>
+
+                    </ol>
+
+                </div>
+
+
+                <div class="list-box">
+
+                    <h3>Alphabet</h3>
+
+                    <ol class="alpha-list">
+
+                        <li>First</li>
+                        <li>Second</li>
+                        <li>Third</li>
+
+                    </ol>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             3. CSS GRID
+        ========================================== -->
+
+        <section
+            class="section"
+            id="grid"
+        >
+
+            <h2>
+                3. CSS Grid
+            </h2>
+
+
+            <h3>
+                Three Equal Columns
+            </h3>
+
+            <div class="grid grid-three">
+
+                <div class="grid-item">
+                    Column 1
+                </div>
+
+                <div class="grid-item">
+                    Column 2
+                </div>
+
+                <div class="grid-item">
+                    Column 3
+                </div>
+
+            </div>
+
+
+            <h3>
+                Different Column Sizes
+            </h3>
+
+            <div class="grid grid-different">
+
+                <div class="grid-item">
+                    1fr
+                </div>
+
+                <div class="grid-item">
+                    2fr
+                </div>
+
+                <div class="grid-item">
+                    1fr
+                </div>
+
+            </div>
+
+
+            <h3>
+                Responsive Grid
+            </h3>
+
+            <div class="grid grid-responsive">
+
+                <div class="grid-item">
+                    Item 1
+                </div>
+
+                <div class="grid-item">
+                    Item 2
+                </div>
+
+                <div class="grid-item">
+                    Item 3
+                </div>
+
+                <div class="grid-item">
+                    Item 4
+                </div>
+
+                <div class="grid-item">
+                    Item 5
+                </div>
+
+                <div class="grid-item">
+                    Item 6
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section
+            class="section"
+            id="hero"
+        >
+
+            <h2>
+                4. Hero Image
+            </h2>
+
+            <p>
+                A hero image is a large visual section normally
+                displayed at the top of a webpage.
+            </p>
+
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <h2>
+                        Build Better Web Experiences
+                    </h2>
+
+                    <p>
+                        Responsive design allows a webpage to
+                        adapt to desktops, tablets and mobile devices.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section
+            class="section"
+            id="responsive"
+        >
+
+            <h2>
+                5. Viewport, Media Queries, Image and Video
+            </h2>
+
+
+            <div class="viewport-box">
+
+                <h3>
+                    Viewport
+                </h3>
+
+                <p>
+                    This webpage contains the viewport meta tag:
+                </p>
+
+                <pre>
+&lt;meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+&gt;
+                </pre>
+
+                <p>
+                    It allows the webpage to use the device width
+                    and display correctly on different screen sizes.
+                </p>
+
+            </div>
+
+
+            <h3>
+                Responsive Image
+            </h3>
+
+            <img
+                src="https://picsum.photos/id/1015/1200/600"
+                alt="Responsive nature image"
+                class="responsive-image"
+            >
+
+
+            <h3>
+                Responsive Video
+            </h3>
+
+            <div class="video-container">
+
+                <video
+                    controls
+                    poster="https://picsum.photos/id/1018/1200/600"
+                >
+
+                    <source
+                        src="https://www.w3schools.com/html/mov_bbb.mp4"
+                        type="video/mp4"
+                    >
+
+                    Your browser does not support the video element.
+
+                </video>
+
+            </div>
+
+
+            <h3>
+                Media Queries
+            </h3>
+
+            <p>
+                Resize the browser window to see the grid,
+                navigation and hero image change at different
+                screen widths.
+            </p>
+
+            <pre>
+@media (max-width: 800px) {
+    .grid-three {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-three {
+        grid-template-columns: 1fr;
+    }
+}
+            </pre>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Day 4 - CSS Compatibility Assignment
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
